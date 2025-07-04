@@ -1,0 +1,71 @@
+/* Estilo de la página de iniciar sesion */
+body {
+  font-family: "trebuchet ms", Arial, Helvetica, sans-serif;
+  background-color: #f2f2f271;
+  background-image: url(fondo.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center;
+  height: 100vh; /* Ocupa toda la pantalla*/
+}
+
+h1 {
+  color: whitesmoke;
+  font-size: clamp(24px, 4vw, 48px);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.6);
+  width: 300px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background-color: #af4c6a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #982a4d;
+}
