@@ -1,14 +1,14 @@
 # s_ilab
 Supplies iLab es un software de gestión de inventario para laboratorio
-# 🧪 Supplies iLab – Sistema de gestión de insumos de laboratorio
+# 🧪 Supplies iLab – Sistema de gestión de insumos de laboratorio 🧪
 
 **Supplies iLab** es un proyecto web orientado a la gestión eficiente de insumos, inventarios, proveedores y alertas en entornos de laboratorio. Este sistema fue desarrollado como parte del componente de formativo, aplicando principios de usabilidad, semántica HTML y diseño CSS responsivo, además de MySQL y próximamente PHP para lograr una conexión entre el Frontend y Backend.
 
-## 🎯 Propósito del proyecto
+## ✔ Propósito del proyecto ✔
 
 El objetivo principal es facilitar el registro, consulta y control de insumos de laboratorio mediante un conjunto de vistas visuales claras, organizadas y adaptadas a distintos dispositivos. Supplies iLab también prepara las bases para futuras integraciones con tecnologías backend como PHP y bases de datos.
 
-## 🧩 Vistas incluidas
+##  Vistas incluidas
 
 - `1-login.html` → Acceso inicial al sistema  
 - `2-crear-usuario.html` → Registro de nuevos usuarios  
@@ -22,9 +22,9 @@ El objetivo principal es facilitar el registro, consulta y control de insumos de
 - `10-ver-alertas.html` → Alertas por vencimiento o stock bajo  
 - `11-reportes.html` → Filtros para reportes visuales o PDF
 
-> 📂 Cada vista está acompañada por su respectivo archivo `.css` para un diseño visual coherente, limpio y responsivo.
+> Cada vista está acompañada por su respectivo archivo `.css` para un diseño visual coherente, limpio y responsivo.
 
-## 🎨 Características visuales
+##  Características visuales
 
 - Diseño con colores suaves y tipografía legible  
 - Organización modular por componentes HTML semánticos  
