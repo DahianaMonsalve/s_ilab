@@ -1,0 +1,57 @@
+<!--Vista insumos-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ver insumos - Supplies iLab</title>
+  <link rel="stylesheet" href="8-ver-insumos.css">
+</head>
+<body>
+  <h2>🧪 Lista de insumos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID del insumo</th>
+        <th>Fecha de registro</th>
+        <th>Nombre</th>
+        <th>Cantidad de envases</th>
+        <th>Fecha de vencimiento</th>
+        <th>Lote</th>
+        <th>Proveedor</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MR-0001</td>
+        <td>15/01/2025</td>
+        <td>Cloruro de sodio</td>
+        <td>1</td>
+        <td>15/10/2030</td>
+        <td>LM0002875</td>
+        <td>Oriente lab</td>
+        <td>
+          <a href="editar_insumo.html?id=1" title="Editar insumo">✏️</a>
+          <a href="eliminar_insumo.php?id=1"  title="Eliminar insumo">🗑️</a>
+        </td>
+      </tr>
+     
+      <tr>
+        <td>R-0001</td>
+        <td>15/01/2025</td>
+        <td>Ácido sulfúrico</td>
+        <td>2</td>
+        <td>05/10/2030</td>
+        <td>JK00025825</td>
+        <td>Merck</td>
+        <td>
+          <a href="editar_insumo.html?id=1" title="Editar insumo">✏️</a>
+          <a href="eliminar_insumo.php?id=1"  title="Eliminar insumo">🗑️</a>
+        </td>
+      </tr>
+      <!-- Más usuarios dinámicos van aquí conectar con PHP T-T  -->
+    </tbody>
+  </table>
+</body>
+</html>

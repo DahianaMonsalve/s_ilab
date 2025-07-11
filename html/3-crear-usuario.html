@@ -1,0 +1,33 @@
+<!--Creación de usuario-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear usuario - Supplies iLab</title>
+  <link rel="stylesheet" href="3-crear-usuario.css">
+</head>
+<body>
+  <h2>➕ Crear nuevo usuario</h2>
+
+  <form action="guardar_usuario.php" method="POST" class="formulario"> <!--conectar con PHP-->
+    <label for="nombre_usuario">Nombre completo:</label>
+    <input type="text" id="nombre_usuario" name="nombre_usuario" maxlength="150" required>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" name="correo" maxlength="100" required>
+
+    <label for="contrasena">Contraseña</label>
+    <input type="password" id="contrasena" name="contrasena" maxlength="255" required>
+
+    <label for="rol">Rol:</label>
+    <select id="rol" name="rol" required>
+      <option value="admin">Administrador</option>
+      <option value="insumos">Analista insumos</option>
+      <option value="compras">Analista compras</option>
+    </select>
+
+    <button type="submit">Guardar usuario</button>
+  </form>
+</body>
+</html>

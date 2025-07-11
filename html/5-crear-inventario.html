@@ -1,0 +1,29 @@
+<!--Creación de inventario-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear inventario - Supplies iLab</title>
+  <link rel="stylesheet" href="5-crear-inventario.css">
+</head>
+<body>
+  <h2>➕ Crear nuevo inventario</h2>
+
+  <form action="guardar_inventario.php" method="POST" class="formulario"> <!--conectar con PHP-->
+    <label for="nombre_inventario">Nombre del inventario:</label>
+    <input type="text" id="nombre_inventario" name="nombre_inventario" maxlength="150" required>
+
+    <label for="fecha_registro">Fecha de registro</label>
+    <input type="date" id="fecha_registro" name="fecha_registro" required>
+
+    <label for="estado_inventario">Estado del inventario</label>
+    <select id="estado_inventario" name="estado_inventario" required>
+      <option value="Activo">Activo</option>
+      <option value="Inactivo">Inactivo</option>
+    </select>
+
+    <button type="submit">Guardar inventario</button>
+  </form>
+</body>
+</html>

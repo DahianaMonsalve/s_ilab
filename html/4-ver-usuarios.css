@@ -1,0 +1,82 @@
+/* Estilo de vista usuarios*/
+/* Reset*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background-color: #f9f9f9;
+  background-image: url("fondo.jpg");
+  padding: 40px;
+  color: #333;
+  background-size: cover;
+  background-repeat: no-repeat;
+	min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #af4c6a;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #ffeef2;
+  color: #af4c6a;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  margin-right: 10px;
+  color: #c73744;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+a:hover {
+  color: #921e2c;
+}
+
+/*Para celucos PROBAR*/
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+}

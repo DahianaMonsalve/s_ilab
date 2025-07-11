@@ -1,0 +1,53 @@
+<!--Vista de inventarios-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de inventarios - Supplies iLab</title>
+  <link rel="stylesheet" href="6-ver-inventarios.css">
+</head>
+<body>
+  <h2>📦 Lista de inventarios</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre del inventario</th>
+        <th>Fecha de registro</th>
+        <th>Estado del inventario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Reactivos</td>
+        <td>12/02/2025</td>
+        <td>Activo</td>
+        <td>
+          <a href="editar_inventario.html?id=1" title="Editar inventario">✏️</a>
+          <a href="eliminar_inventario.php?id=1"  title="Eliminar inventario">🗑️</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Material de referencia certificado</td>
+        <td>01/01/2025</td>
+        <td>Activo</td>
+        <td>
+          <a href="editar_inventario.html?id=2" title="Editar inventario">✏️</a>
+          <a href="eliminar_inventario.php?id=2"  title="Eliminar inventario">🗑️</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Material de vidrio</td>
+        <td>01/01/2025</td>
+        <td>Inactivo</td>
+        <td>
+          <a href="editar_inventario.html?id=3" title="Editar inventario">✏️</a>
+          <a href="eliminar_inventario.php?id=3"  title="Eliminar inventario">🗑️</a>
+        </td>
+      </tr>
+      <!-- conectar con PHP T-T  -->
+    </tbody>
+  </table>
+</body>
+</html>

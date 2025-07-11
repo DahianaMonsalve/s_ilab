@@ -1,0 +1,26 @@
+<!--Creación de proveedor-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear proveedor - Supplies iLab</title>
+  <link rel="stylesheet" href="5-crear-inventario.css">
+</head>
+<body>
+  <h2>➕ Crear nuevo proveedor</h2>
+
+  <form action="guardar_proveedor.php" method="POST" class="formulario"> <!--conectar con PHP-->
+    <label for="nombre">Nombre del proveedor:</label>
+    <input type="text" id="nombre" name="nombre" maxlength="50" required>
+
+    <label for="email">Email del proveedor:</label>
+    <input type="text" id="email" name="email" maxlength="50" required>
+
+    <label for="contacto">Contacto:</label>
+     <input type="text" id="contacto" name="contacto" maxlength="20" required>
+
+    <button type="submit">Guardar proveedor</button>
+  </form>
+</body>
+</html>

@@ -1,13 +1,23 @@
-/* Estilo de la página de iniciar sesion */
+/* Estilo de la página para iniciar sesión */
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo del fondo y la letra en general*/
 body {
   font-family: "trebuchet ms", Arial, Helvetica, sans-serif;
   background-color: #f2f2f271;
-  background-image: url(fondo.jpg);
+  background-image: url("fondo.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Distribución del contenedor cuerpo */
 .cuerpo {
   display: flex;
   flex-direction: column;
@@ -16,21 +26,25 @@ body {
   height: 100vh; /* Ocupa toda la pantalla*/
 }
 
+/* Estilo del título "Bienvenido a Supplies iLab"*/
 h1 {
   color: whitesmoke;
   font-size: clamp(24px, 4vw, 48px);
   letter-spacing: 1px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
+/* Estilo del formulario*/
 form {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0,0,0,0.6);
-  width: 300px;
+  width: 350px;
 }
 
+/* Estilo del título "Iniciar sesión"*/
 h2 {
   margin-top: 30px;
   margin-bottom: 50px;
@@ -46,6 +60,7 @@ label {
   font-weight: bold;
 }
 
+/* Estilo de los input*/
 input[type="text"], input[type="password"] {
   width: 100%;
   padding: 8px;
@@ -54,6 +69,7 @@ input[type="text"], input[type="password"] {
   box-sizing: border-box;
 }
 
+/* Estilo del botón Iniciar sesión*/
 input[type="submit"] {
   margin-top: 20px;
   width: 100%;
@@ -66,6 +82,24 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+/* Estilo del botón Iniciar sesión cuando pasa el cursor por encima*/
 input[type="submit"]:hover {
   background-color: #982a4d;
+}
+
+/* Para responsividad en celulares, PROBAR */
+@media screen and (max-width: 600px) {
+  form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="password"], input[type="submit"] {
+    font-size: 1rem;
+  }
 }

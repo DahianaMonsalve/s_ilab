@@ -1,0 +1,132 @@
+/* Estilo de la página de inicio de sesión */
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo del fondo y la letra en general*/
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background-color: #f2f2f271;
+  background-image: url("fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: clamp(24px, 4vw, 48px);
+  text-align: center;
+  color: whitesmoke;
+  padding-bottom: 40px;
+}
+
+/* Contenedor principal */
+.dashboard {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* Tarjeta individual */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px 15px;
+  text-align: center;
+  color: #af4c6a;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tarjeta individual más grnde cuando se pasa el cursor por encima */
+.card:hover {
+  transform: scale(1.03);
+  background-color: #fff4f7;
+}
+
+/* Título visible siempre */
+.titulo {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+/* Acciones ocultas y desplegables */
+.acciones {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.7s ease, max-height 0.4s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.card:hover .acciones {
+  opacity: 1;
+  max-height: 500px;
+}
+
+/* Enlaces de acción */
+.acciones a {
+  color: #c73744;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.acciones a:hover {
+  color: #921e2c;
+  text-decoration: underline;
+}
+
+/* Estilo para salir, color más fuerte */
+.card.salir:hover {
+  background-color: #f3c2c7;
+}
+
+/* Estilo para celular, si es que da .-. PROBAR*/
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .titulo {
+    font-size: 1.1rem;
+  }
+
+  .acciones a {
+    font-size: 0.9rem;
+  }
+}
