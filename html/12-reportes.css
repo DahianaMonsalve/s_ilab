@@ -8,9 +8,12 @@
 body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   background-color: #f6f6f6;
-  background-image: url(fondo.jpg);
-  padding: 40px;
-  color: #333;
+  background-image: url("fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
 h2 {
