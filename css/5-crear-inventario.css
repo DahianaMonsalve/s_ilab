@@ -1,4 +1,5 @@
 /* Estilo de vista crear usuario*/
+/*Script reciclado de crear usuario jeje*/
 /* Reset*/
 * {
   box-sizing: border-box;
@@ -9,8 +10,9 @@
 body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   background-color: #f9f9f9;
+  padding: 40px;
   color: #333;
-	background-image: url("fondo.jpg");
+	background-image: url("../assets/fondo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -42,19 +44,16 @@ h2 {
   gap: 20px;
 }
 
-/*Grosor de la letra (nombre, correo, contraseña y rol)*/
 label {
   font-weight: bold;
 }
 
-/*Diseño de los inputs y select de la lista rol"*/
 input, select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
-/*Diseño del botón "Guardar usuario"*/
 button {
   padding: 12px;
   background-color: #af4c6a;
@@ -70,13 +69,19 @@ button:hover {
   background-color: #982a4d;
 }
 
-/*Para celulares PROBAR*/
+input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+/*A ver si algún día pruebo esto en el celular jaja*/
 @media screen and (max-width: 600px) {
   h2 {
     width: 90%;
     font-size: 1.3rem;
     padding: 10px;
-    margin-bottom: 15px;
   }
 
   .formulario {

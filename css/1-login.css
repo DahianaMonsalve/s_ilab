@@ -11,7 +11,7 @@
 body {
   font-family: "trebuchet ms", Arial, Helvetica, sans-serif;
   background-color: #f2f2f271;
-  background-image: url("fondo.jpg");
+  background-image: url("../assets/fondo.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -9,7 +9,7 @@
 body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   background-color: #f9f9f9;
-  background-image: url("fondo.jpg");
+  background-image: url("../assets/fondo.jpg");
   padding: 40px;
   color: #333;
   background-size: cover;
@@ -60,11 +60,12 @@ a:hover {
   color: #921e2c;
 }
 
-/*Celulares probar*/
+/*Vista en celular PROBAR*/
 @media screen and (max-width: 600px) {
   h2 {
     font-size: 1.3rem;
     padding: 8px;
+    margin-bottom: 20px;
   }
 
   table {

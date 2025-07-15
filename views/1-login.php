@@ -1,4 +1,5 @@
 <!--Página para iniciar sesion-->
+<?php if (isset($_GET['error'])) echo "<p style='color:red;'>".$_GET['error']."</p>"; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head> 
@@ -10,14 +11,14 @@
 	<body>
 		<div class="cuerpo">
 			<h1>Bienvenido a Supplies iLab</h1>
-			<form action="/iniciar-sesion" method="post">
+			<form action="../controladores/1-login_usuario.php" method="post">
 				<h2>Iniciar sesión</h2>
-				<label for="nombre-usuario">Usuario:</label>
-				<input type="text" id="nombre-usuario" name="nombre-usuario" required>
+				<label for="nombre_usuario">Usuario:</label>
+				<input type="text" id="nombre_usuario" name="nombre_usuario" required>
 				<br>
 				<br>
-				<label for="contrasena">Contraseña:</label>
-				<input type="password" id="contrasena" name="contrasena" required>
+				<label for="password">Contraseña:</label>
+				<input type="password" id="password" name="password" required>
 				<br>
 				<br>
 				<input type="submit" value="Iniciar sesión">

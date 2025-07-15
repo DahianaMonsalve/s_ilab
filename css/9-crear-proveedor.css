@@ -1,6 +1,5 @@
-/* Estilo de vista crear usuario*/
-/*Script reciclado de crear usuario jeje*/
-/* Reset*/
+/* Estilo de vista crear proveedor*/
+/*Reset*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,7 +11,7 @@ body {
   background-color: #f9f9f9;
   padding: 40px;
   color: #333;
-	background-image: url("fondo.jpg");
+	background-image: url("../assets/fondo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -76,12 +75,13 @@ input[type="date"] {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
 
-/*A ver si algún día pruebo esto en el celular jaja*/
+/*Para celular PROBAR*/
 @media screen and (max-width: 600px) {
   h2 {
     width: 90%;
     font-size: 1.3rem;
     padding: 10px;
+    margin-bottom: 15px;
   }
 
   .formulario {

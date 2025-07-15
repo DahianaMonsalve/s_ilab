@@ -9,7 +9,7 @@
 body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   background-color: #f9f9f9;
-  background-image: url("fondo.jpg");
+  background-image: url("../assets/fondo.jpg");
   padding: 40px;
   color: #333;
   background-size: cover;
