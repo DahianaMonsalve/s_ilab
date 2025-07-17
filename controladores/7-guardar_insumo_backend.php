@@ -8,11 +8,11 @@ session_start();
 
 $id_insumo = $_POST['id_insumo'];
 $nombre_insumo = $_POST['nombre_insumo'];
-$descripcion = $_POST['descripcion']; //
+$descripcion = $_POST['descripcion']; //puede estar vacío
 $cantidad = $_POST['cantidad'];
-$stock_minimo = $_POST['stock_minimo']; //
+$stock_minimo = $_POST['stock_minimo']; //puede estar vacío
 $fecha_vencimiento = $_POST['fecha_vencimiento'];
-$cas = $_POST['cas']; //
+$cas = $_POST['cas']; //puede estar vacío
 $marca = $_POST['marca'];
 $estado_insumo = $_POST['estado_insumo'];
 $id_inventario = $_POST['id_inventario'];
@@ -28,7 +28,7 @@ if (empty($nombre_insumo) || empty($cantidad) || empty($fecha_vencimiento) || em
 
 
 //Inserción de datos
-$sql = "INSERT INTO insumo (nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO insumo (nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("ssiissssisi", $nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo $id_usuario);
 

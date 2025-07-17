@@ -1,4 +1,47 @@
 <!--Creación de insumo-->
+
+<!--Código PHP para mensajes o error-->
+<?php
+if (isset($_GET['error'])) {
+  echo "<p style='color:red;'>".$_GET['error']."</p>";
+}
+if (isset($_GET['mensaje'])) {
+  echo "<p style='color:green;'>".$_GET['mensaje']."</p>";
+}
+?>
+
+<!-- Para reutilizar esta vista en edición de insumo-->
+<?php
+include("../includes/config.php");
+session_start();
+
+$modo = "crear"; // por defecto
+
+if (isset($_GET['id_insumo'])) {
+  $modo = "editar";
+  $id_insumo = $_GET['id_insumo'];
+
+  $sql = "SELECT insumo (nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario) FROM insumo WHERE id_insumo=?";
+  $stmt = $conexion->prepare($sql);
+  $stmt->bind_param("i", $id_insumo);
+  $stmt->execute();
+  $stmt->store_result();
+
+  if ($stmt->num_rows > 0) {
+    $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo);
+    $stmt->fetch();
+  } else {
+    header("Location: 8-ver-insumos.php?error=Insumo%20no%20encontrado");
+    exit();
+  }
+} else {
+  $nombre_insumo = $descripcion = $cantidad = $stock_minimo = $fecha_vencimiento = $cas = $marca = $estado_insumo = $id_inventario =  $fecha_registro_insumo = "";
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,9 +51,13 @@
   <link rel="stylesheet" href="../css/7-crear-insumo.css">
 </head>
 <body>
-  <h2>➕ Crear nuevo insumo</h2>
+  <h2><?php echo ($modo == "editar") ? "✏️ Editar insumo" : "➕ Crear nuevo insumo"; ?></h2>
 
-  <form action="guardar_insumo.php" method="POST" class="formulario"> <!--conectar con PHP-->
+  <form action="guardar_insumo.php" method="POST" class="formulario"> 
+  <?php if ($modo == "editar") { ?>
+  <input type="hidden" name="id_inventario" value="<?php echo $id_inventario; ?>">
+  <?php } ?>
+
     <label for="nombre_insumo">Nombre del insumo:</label>
     <input type="text" id="nombre_insumo" name="nombre_insumo" maxlength="150" required>
 

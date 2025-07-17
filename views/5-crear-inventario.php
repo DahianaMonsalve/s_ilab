@@ -41,6 +41,7 @@ if (isset($_GET['id_inventario'])) {
 }
 ?>
 
+<!--Código en HTML-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
