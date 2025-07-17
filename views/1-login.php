@@ -23,7 +23,7 @@ if (isset($_GET['mensaje'])) {
 	<body>
 		<div class="cuerpo">
 			<h1>Bienvenido a Supplies iLab</h1>
-			<form action="../controladores/1-login_usuario.php" method="post">
+			<form action="../controladores/1-login_usuario_backend.php" method="post">
 				<h2>Iniciar sesión</h2>
 				<label for="nombre_usuario">Usuario:</label>
 				<input type="text" id="nombre_usuario" name="nombre_usuario" required>

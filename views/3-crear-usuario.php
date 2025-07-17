@@ -51,8 +51,8 @@ if (isset($_GET['id_usuario'])) {
 <body>
   <h2><?php echo ($modo == "editar") ? "✏️ Editar usuario" : "➕ Crear nuevo usuario"; ?></h2>
 
-  <form class="formulario" action="../controladores/<?php echo ($modo == "editar") ? 'editar_usuario_backend.php' : '3-guardar_usuario.php'; ?>" method="POST">
-  <?php if ($modo == "editar") echo '<input type="hidden" name="id_usuario" value="'.$id_usuario.'">'; ?>
+  <form class="formulario" action="../controladores/<?php echo ($modo == "editar") ? '4-editar_usuario_backend.php' : '3-guardar_usuario_backend.php'; ?>" method="POST">
+  <?php if ($modo == "editar") echo '<input type="hidden" name="id_usuario" value="'.$id_usuario.'">'; ?> <!--Cuando esté en modo edición-->
 
     <label for="nombre_usuario">Nombre completo:</label>
     <input type="text" id="nombre_usuario" name="nombre_usuario" maxlength="150" value="<?php echo htmlspecialchars($nombre_usuario); ?>" required>

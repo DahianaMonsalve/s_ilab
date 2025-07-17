@@ -28,7 +28,7 @@ if (isset($_GET['id_inventario'])) {
   $stmt->store_result();
 
   if ($stmt->num_rows > 0) {
-    $stmt->bind_result($nombre_inventario, $fecha_registro, $estado_invetario);
+    $stmt->bind_result($nombre_inventario, $fecha_registro, $estado_inventario);
     $stmt->fetch();
   } else {
     header("Location: 6-ver-inventario.php?error=Inventario%20no%20encontrado");
@@ -38,7 +38,6 @@ if (isset($_GET['id_inventario'])) {
   $nombre_inventario = "";
   $fecha_registro = "";
   $estado_inventario = "";
-
 }
 ?>
 
@@ -54,7 +53,12 @@ if (isset($_GET['id_inventario'])) {
   <h2><?php echo ($modo == "editar") ? "✏️ Editar inventario" : "➕ Crear nuevo inventario"; ?></h2>
 
   <form action="../controladores/<?php echo ($modo == "editar") ? '6-editar_inventario_backend.php' : '5-guardar_inventario_backend.php'; ?>" class="formulario" method="POST"> 
-    <label for="nombre_inventario">Nombre del inventario:</label>
+  <?php if ($modo == "editar") { ?>
+  <input type="hidden" name="id_inventario" value="<?php echo $id_inventario; ?>">
+  <?php } ?>
+ 
+
+  <label for="nombre_inventario">Nombre del inventario:</label>
     <input type="text" id="nombre_inventario" name="nombre_inventario" maxlength="150" value="<?php echo htmlspecialchars($nombre_inventario); ?>" required>
 
     <label for="fecha_registro">Fecha de registro</label>

@@ -6,15 +6,16 @@ $id_inventario = $_POST['id_inventario'];
 $nombre_inventario = $_POST['nombre_inventario'];
 $fecha_registro = $_POST['fecha_registro'];
 $estado_inventario = $_POST['estado_inventario'];
+$id_usuario = $_POST['id_usuario'];
 
-if (empty($id_inventario) || empty($nombre_inventario) || empty($fecha_registro) || empty($estado_inventario)) {
+if (empty($nombre_inventario) || empty($fecha_registro) || empty($estado_inventario)) {
   header("Location: ../views/5-crear-inventario.php?error=Faltan%20datos");
   exit();
 }
 
-$sql = "UPDATE inventario SET nombre_inventario=?, fecha_registro=?, estado_inventario=? WHERE id_inventario=?";
+$sql = "UPDATE inventario SET nombre_inventario=?, fecha_registro=?, estado_inventario=?, id_usuario=? WHERE id_inventario=?";
 $stmt = $conexion->prepare($sql);
-$stmt->bind_param("sssi", $nombre_inventario, $fecha_registro, $estado_inventario, $id_usuario);
+$stmt->bind_param("sssii", $nombre_inventario, $fecha_registro, $estado_inventario, $id_usuario, $id_inventario);
 
 
 if ($stmt->execute()) {
