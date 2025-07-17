@@ -1,4 +1,15 @@
 <!--Vista insumos-->
+
+<!--Código PHP para mensajes o error-->
+<?php
+if (isset($_GET['error'])) {
+  echo "<p style='color:red;'>".$_GET['error']."</p>";
+}
+if (isset($_GET['mensaje'])) {
+  echo "<p style='color:green;'>".$_GET['mensaje']."</p>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,43 +25,53 @@
       <tr>
         <th>ID del insumo</th>
         <th>Fecha de registro</th>
-        <th>Nombre</th>
-        <th>Cantidad de envases</th>
+        <th>Nombre del insumo</th>
+        <th>Cantidad</th>
         <th>Fecha de vencimiento</th>
         <th>Lote</th>
         <th>Proveedor</th>
+        <th>Inventario</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>MR-0001</td>
-        <td>15/01/2025</td>
-        <td>Cloruro de sodio</td>
-        <td>1</td>
-        <td>15/10/2030</td>
-        <td>LM0002875</td>
-        <td>Oriente lab</td>
-        <td>
-          <a href="editar_insumo.html?id=1" title="Editar insumo">✏️</a>
-          <a href="eliminar_insumo.php?id=1"  title="Eliminar insumo">🗑️</a>
-        </td>
-      </tr>
-     
-      <tr>
-        <td>R-0001</td>
-        <td>15/01/2025</td>
-        <td>Ácido sulfúrico</td>
-        <td>2</td>
-        <td>05/10/2030</td>
-        <td>JK00025825</td>
-        <td>Merck</td>
-        <td>
-          <a href="editar_insumo.html?id=1" title="Editar insumo">✏️</a>
-          <a href="eliminar_insumo.php?id=1"  title="Eliminar insumo">🗑️</a>
-        </td>
-      </tr>
-      <!-- Más usuarios dinámicos van aquí conectar con PHP T-T  -->
+      <?php
+      include("../includes/config.php");
+      session_start();
+
+      $sql = "
+      SELECT 
+      insumo.id_insumo, insumo.nombre_insumo, insumo.fecha_vencimiento, 
+      insumo.fecha_registro_insumo, insumo.cantidad, insumo.lote, 
+      proveedor.nombre_proveedor, inventario.nombre_inventario
+      FROM insumo
+      JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
+      JOIN inventario ON insumo.id_inventario = inventario.id_inventario
+      ORDER BY insumo.id_insumo DESC
+      ";
+      $resultado = $conexion->query($sql);
+
+      if ($resultado && $resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td>" . htmlspecialchars($fila['id_insumo']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['fecha_registro_insumo']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['nombre_insumo']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['cantidad']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['fecha_vencimiento']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['lote']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['nombre_proveedor']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['nombre_inventario']) . "</td>";
+          echo "<td>
+                  <a href='7-crear-insumo.php?id_insumo=" . $fila['id_insumo'] . "' title='Editar insumo'>✏️</a>
+                  <a href='../controladores/8-eliminar_insumo_backend.php?id_insumo=" . $fila['id_insumo'] . "' title='Eliminar insumo' onclick=\"return confirm('¿Eliminar insumo?');\">🗑️</a>
+                </td>";
+          echo "</tr>";
+        }
+      } else {
+        echo "<tr><td colspan='4'>No hay insumos registrados.</td></tr>";
+      }
+      ?>
     </tbody>
   </table>
   <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>

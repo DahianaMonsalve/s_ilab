@@ -53,7 +53,7 @@ if (isset($_GET['mensaje'])) {
         echo "<tr><td colspan='4'>No hay inventarios registrados.</td></tr>";
       }
       ?>
-</tbody>
+    </tbody>
 
   </table>
   <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>

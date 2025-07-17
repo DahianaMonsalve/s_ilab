@@ -2,6 +2,7 @@
 
 <!--Código PHP para mensajes o error-->
 <?php
+
 if (isset($_GET['error'])) {
   echo "<p style='color:red;'>".$_GET['error']."</p>";
 }
@@ -15,31 +16,30 @@ if (isset($_GET['mensaje'])) {
 include("../includes/config.php");
 session_start();
 
-$modo = "crear"; // por defecto
+$modo = "crear"; //por defecto
 
 if (isset($_GET['id_insumo'])) {
   $modo = "editar";
   $id_insumo = $_GET['id_insumo'];
 
-  $sql = "SELECT insumo (nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario) FROM insumo WHERE id_insumo=?";
+  $sql = "SELECT nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, lote, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario, id_proveedor FROM insumo WHERE id_insumo=?";
+
   $stmt = $conexion->prepare($sql);
   $stmt->bind_param("i", $id_insumo);
   $stmt->execute();
   $stmt->store_result();
 
   if ($stmt->num_rows > 0) {
-    $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo);
+    $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $lote, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo, $id_usuario, $id_proveedor);
     $stmt->fetch();
   } else {
     header("Location: 8-ver-insumos.php?error=Insumo%20no%20encontrado");
     exit();
   }
 } else {
-  $nombre_insumo = $descripcion = $cantidad = $stock_minimo = $fecha_vencimiento = $cas = $marca = $estado_insumo = $id_inventario =  $fecha_registro_insumo = "";
+  $nombre_insumo = $descripcion = $cantidad = $stock_minimo = $fecha_vencimiento = $lote = $cas = $marca = $estado_insumo = $id_inventario =  $fecha_registro_insumo = "";
 }
 ?>
-
-
 
 <!--Código en HTML-->
 <!DOCTYPE html>
@@ -53,95 +53,76 @@ if (isset($_GET['id_insumo'])) {
 <body>
   <h2><?php echo ($modo == "editar") ? "✏️ Editar insumo" : "➕ Crear nuevo insumo"; ?></h2>
 
-  <form action="guardar_insumo.php" method="POST" class="formulario"> 
+  <form action="../controladores/<?php echo ($modo == "editar") ? '8-editar_insumo_backend.php' : '7-guardar_insumo_backend.php'; ?>" method="POST" class="formulario"> 
   <?php if ($modo == "editar") { ?>
-  <input type="hidden" name="id_inventario" value="<?php echo $id_inventario; ?>">
+  <input type="hidden" name="id_insumo" value="<?php echo $id_insumo; ?>">
   <?php } ?>
 
     <label for="nombre_insumo">Nombre del insumo:</label>
-    <input type="text" id="nombre_insumo" name="nombre_insumo" maxlength="150" required>
+    <input type="text" id="nombre_insumo" name="nombre_insumo" maxlength="150" value="<?php echo htmlspecialchars($nombre_insumo); ?>" required>
 
     <label for="descripcion">Descripción:</label>
-    <input type="text" id="descripcion" name="descripcion" maxlength="400">
+    <input type="text" id="descripcion" name="descripcion" maxlength="400" value="<?php echo htmlspecialchars($descripcion); ?>">
 
     <label for="cantidad">Cantidad de envases:</label>
-    <input type="number" id="cantidad" name="cantidad" step="1" required>
+    <input type="number" id="cantidad" name="cantidad" step="1" value="<?php echo htmlspecialchars($cantidad); ?>" required>
 
     <label for="stock_minimo">Stock mínimo:</label>
-    <input type="number" id="stock_minimo" name="stock_minimo" step="1" required>
+    <input type="number" id="stock_minimo" name="stock_minimo" step="1" value="<?php echo htmlspecialchars($stock_minimo); ?>"required>
 
     <label for="fecha_vencimiento">Fecha de vencimiento</label>
-    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" required>
+    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo htmlspecialchars($fecha_vencimiento); ?>" required>
 
     <label for="lote">Lote del insumo:</label>
-    <input type="text" id="lote" name="lote" maxlength="25" required>
+    <input type="text" id="lote" name="lote" maxlength="25" value="<?php echo htmlspecialchars($lote); ?>" required>
 
     <label for="cas">CAS del insumo:</label>
-    <input type="text" id="cas" name="cas" maxlength="25">
+    <input type="text" id="cas" name="cas" maxlength="25" value="<?php echo htmlspecialchars($cas); ?>">
 
     <label for="marca">Marca del insumo:</label>
-    <input type="text" id="marca" name="marca" maxlength="25" required>
+    <input type="text" id="marca" name="marca" maxlength="25" value="<?php echo htmlspecialchars($marca); ?>" required>
 
     <label for="estado_insumo">Estado del insumo</label>
-    <select id="estado_insumo" name="estado_insumo" required>
-      <option value="insumo_sellado">Sellado</option>
-      <option value="insumo_abierto">Abierto</option>
-      <option value="insumo_terminado">Terminado</option>
+    <select id="estado_insumo" name="estado_insumo" value="<?php echo htmlspecialchars($estado_insumo); ?>" required>
+      <option option value="insumo_sellado" <?= ($estado_insumo == "insumo_sellado") ? 'selected' : '' ?>>Sellado</option>
+      <option value="insumo_abierto" <?= ($estado_insumo == "insumo_abierto") ? 'selected' : '' ?>">Abierto</option>
+      <option value="insumo_terminado" <?= ($estado_insumo == "insumo_terminado") ? 'selected' : '' ?>>Terminado</option>
     </select>
 
     <label for="id_proveedor">Proveedor:</label>
     <select id="id_proveedor" name="id_proveedor" required>
-      <option value="1">Químicos Ltda</option>
-      <option value="2">BioLab S.A.</option>
-      <option value="3">Reactivos del Oriente</option>
-
+      <option value="">-- Selecciona un proveedor --</option>
       <?php
-    //   <select name="id_proveedor" required>
-    //   <?php
-    //     $sql = "SELECT id_proveedor, nombre_proveedor FROM proveedor";
-    //     $resultado = $conexion->query($sql);
-    //     while ($fila = $resultado->fetch_assoc()) {
-    //       echo "<option value='".$fila['id_proveedor']."'>".$fila['nombre_proveedor']."</option>";
-    //     }
-    //   ?>
+        $sql = "SELECT id_proveedor, nombre_proveedor FROM proveedor";
+        $resultado = $conexion->query($sql);
+        while ($fila = $resultado->fetch_assoc()) {
+          $selected = ($fila['id_proveedor'] == $id_proveedor) ? 'selected' : '';
+          echo "<option value='".$fila['id_proveedor']."' $selected>".$fila['nombre_proveedor']."</option>";
+        }
+      ?>
     </select>
-  
 
-
-
-    <!-- conectar con la BD con PHP  -->
-    </select>
 
     <label for="id_inventario">Tipo de inventario al que pertenece:</label>
     <select id="id_inventario" name="id_inventario" required>
-      <option value="1">Reactivos</option>
-      <option value="2">Material de referencia certificado</option>
-      <option value="3">Material de vidrio</option>
-
+      <option value="">-- Selecciona un inventario --</option>
       <?php
-      // <select name="id_inventario" required>
-      //   <?php
-      //     $sql = "SELECT id_inventario, nombre_inventario FROM inventario";
-      //     $resultado = $conexion->query($sql);
-      //     while ($fila = $resultado->fetch_assoc()) {
-      //       echo "<option value='".$fila['id_inventario']."'>".$fila['nombre_inventario']."</option>";
-      //     }
-      //   ?>
+        $sql = "SELECT id_inventario, nombre_inventario FROM inventario";
+        $resultado = $conexion->query($sql);
+        while ($fila = $resultado->fetch_assoc()) {
+          $selected = ($fila['id_inventario'] == $id_inventario) ? 'selected' : '';
+          echo "<option value='".$fila['id_inventario']."' $selected>".$fila['nombre_inventario']."</option>";
+        }
       ?>
-      </select>
-
-
-
-
-
     </select>
-    <!-- conectar con la BD con PHP -->
+
 
     <label for="fecha_registro_insumo">Fecha de registro</label>
-    <input type="date" id="fecha_registro_insumo" name="fecha_registro_insumo" required>
+    <input type="date" id="fecha_registro_insumo" name="fecha_registro_insumo" value="<?php echo htmlspecialchars($fecha_registro_insumo); ?>" required>
 
    <button type="submit">Guardar insumo</button>
     <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>
+    <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>"> <!--Para generar trazabilidad-->
   </form>
 </body>
 </html>
