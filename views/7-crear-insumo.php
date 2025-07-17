@@ -60,7 +60,6 @@
 
     <label for="fecha_registro_insumo">Fecha de registro</label>
     <input type="date" id="fecha_registro_insumo" name="fecha_registro_insumo" required>
-     <!-- Se debe agregar fecha de registro en la base de datos -->
 
    <button type="submit">Guardar insumo</button>
     <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>
