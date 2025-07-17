@@ -16,8 +16,8 @@ $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $id_inventario);
 
 if ($stmt->execute()) {
-  header("Location: ../views/6-ver-inventarios.php?mensaje=Usuario%20eliminado%20correctamente");
+  header("Location: ../views/6-ver-inventarios.php?mensaje=Inventario%20eliminado%20correctamente");
 } else {
-  header("Location: ../views/6-ver-inventarios.php?error=No%20se%20pudo%20eliminar%20el%20usuario");
+  header("Location: ../views/6-ver-inventarios.php?error=No%20se%20pudo%20eliminar%20el%20inventario");
 }
 ?>

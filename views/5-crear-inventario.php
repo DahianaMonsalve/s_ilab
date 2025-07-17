@@ -68,6 +68,7 @@ if (isset($_GET['id_inventario'])) {
 
     <button type="submit">Guardar inventario</button>
     <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>
+    <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>"> <!--Para generar trazabilidad-->
   </form>
 </body>
 </html>

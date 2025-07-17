@@ -18,7 +18,7 @@ $stmt->bind_param("sssi", $nombre_inventario, $fecha_registro, $estado_inventari
 
 
 if ($stmt->execute()) {
-  header("Location: ../views/6-ver-inventarios.php?mensaje=Usuario%20actualizado");
+  header("Location: ../views/6-ver-inventarios.php?mensaje=Inventario%20actualizado");
 } else {
   header("Location: ../views/5-crear-inventario.php?error=Error%20al%20actualizar");
 }

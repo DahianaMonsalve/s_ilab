@@ -24,8 +24,8 @@ $stmt->bind_param("sss", $nombre_inventario, $fecha_registro, $estado_inventario
 
 //Mensajes de creación de usuario o error
 if ($stmt->execute()) {
-  header("Location: ../views/6-ver-inventario.php?mensaje=Usuario%20creado");
+  header("Location: ../views/6-ver-inventario.php?mensaje=Inventario%20creado");
 } else {
-  header("Location: ../views/5-crear-inventario.php?error=Error%20al%20crear%20usuario");
+  header("Location: ../views/5-crear-inventario.php?error=Error%20al%20crear%20inventario");
 }
 ?>
