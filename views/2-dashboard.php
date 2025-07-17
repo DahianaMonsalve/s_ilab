@@ -46,8 +46,8 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">🧪 <br> Insumos</div>
         <div class="acciones">
-          <a href="7-crear-insumo.html">➕ Crear</a>
-          <a href="8-ver-insumos.html">🔍 Ver</a>
+          <a href="7-crear-insumo.php">➕ Crear</a>
+          <a href="8-ver-insumos.php">🔍 Ver</a>
         </div>
       </div>
 
@@ -55,8 +55,8 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">🛠️ <br> Proveedores</div>
         <div class="acciones">
-          <a href="9-crear-proveedor.html">➕ Crear</a>
-          <a href="10-ver-proveedor.html">🔍 Ver</a>
+          <a href="9-crear-proveedor.php">➕ Crear</a>
+          <a href="10-ver-proveedor.php">🔍 Ver</a>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">📡 <br> Alertas</div>
         <div class="acciones">
-          <a href="11-ver-alertas.html">🔔 Ver alertas</a>
+          <a href="11-ver-alertas.php">🔔 Ver alertas</a>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">📊 <br> Reportes</div>
         <div class="acciones">
-          <a href="12-reportes.html">📈 Generar</a>
+          <a href="12-reportes.php">📈 Generar</a>
         </div>
       </div>
 
