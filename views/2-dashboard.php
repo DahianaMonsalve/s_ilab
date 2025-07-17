@@ -7,6 +7,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 ?>
 
+<!--Código HTML-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,8 +28,8 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">👤 <br> Usuarios</div>
         <div class="acciones">
-          <a href="3-crear-usuario.html">➕ Crear</a>
-          <a href="4-ver-usuarios.html">🔍 Ver</a>
+          <a href="3-crear-usuario.php">➕ Crear</a>
+          <a href="4-ver-usuarios.php">🔍 Ver</a>
         </div>
       </div>
 
@@ -36,8 +37,8 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card">
         <div class="titulo">📦 <br> Inventario</div>
         <div class="acciones">
-          <a href="5-crear-inventario.html">➕ Crear</a>
-          <a href="6-ver-inventarios.html">🔍 Ver</a>
+          <a href="5-crear-inventario.php">➕ Crear</a>
+          <a href="6-ver-inventarios.php">🔍 Ver</a>
         </div>
       </div>
 
@@ -79,8 +80,7 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card salir">
         <div class="titulo">🚪 <br> Cerrar sesión</div>
         <div class="acciones">
-          <a href="1-login.html">Salir ahora</a>
-          <!-- <a href="logout.php">Salir ahora</a> -->
+          <a href="13-logout.php">Salir ahora</a> <!--Para reedirigir a la salida con el archivo logout-->
         </div>
       </div>
 

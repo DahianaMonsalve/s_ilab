@@ -1,10 +1,22 @@
 <!--Página para iniciar sesion-->
-<?php if (isset($_GET['error'])) echo "<p style='color:red;'>".$_GET['error']."</p>"; ?>
+
+<!--Código PHP para mensajes o error-->
+<?php 
+if (isset($_GET['error'])) {
+	echo "<p style='color:red;'>".$_GET['error'] . "</p>"; 
+}
+
+if (isset($_GET['mensaje'])) {
+  echo "<p style='color:green;'>" . $_GET['mensaje'] . "</p>";
+}
+?>
+
+<!--Código HTML-->
 <!DOCTYPE html>
 <html lang="es">
 <head> 
 	<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Inicio sesión - Supplies iLab</title>
 	<link href="../css/1-login.css" rel="stylesheet">
 </head>
