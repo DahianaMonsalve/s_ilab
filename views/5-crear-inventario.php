@@ -31,7 +31,7 @@ if (isset($_GET['id_inventario'])) {
     $stmt->bind_result($nombre_inventario, $fecha_registro, $estado_inventario);
     $stmt->fetch();
   } else {
-    header("Location: 6-ver-inventario.php?error=Inventario%20no%20encontrado");
+    header("Location: 6-ver-inventarios.php?error=Inventario%20no%20encontrado");
     exit();
   }
 } else {
