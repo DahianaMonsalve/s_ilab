@@ -41,7 +41,7 @@ if (isset($_GET['id_insumo'])) {
 
 
 
-
+<!--Código en HTML-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -94,6 +94,21 @@ if (isset($_GET['id_insumo'])) {
       <option value="1">Químicos Ltda</option>
       <option value="2">BioLab S.A.</option>
       <option value="3">Reactivos del Oriente</option>
+
+      <?php
+    //   <select name="id_proveedor" required>
+    //   <?php
+    //     $sql = "SELECT id_proveedor, nombre_proveedor FROM proveedor";
+    //     $resultado = $conexion->query($sql);
+    //     while ($fila = $resultado->fetch_assoc()) {
+    //       echo "<option value='".$fila['id_proveedor']."'>".$fila['nombre_proveedor']."</option>";
+    //     }
+    //   ?>
+    </select>
+  
+
+
+
     <!-- conectar con la BD con PHP  -->
     </select>
 
@@ -102,6 +117,23 @@ if (isset($_GET['id_insumo'])) {
       <option value="1">Reactivos</option>
       <option value="2">Material de referencia certificado</option>
       <option value="3">Material de vidrio</option>
+
+      <?php
+      // <select name="id_inventario" required>
+      //   <?php
+      //     $sql = "SELECT id_inventario, nombre_inventario FROM inventario";
+      //     $resultado = $conexion->query($sql);
+      //     while ($fila = $resultado->fetch_assoc()) {
+      //       echo "<option value='".$fila['id_inventario']."'>".$fila['nombre_inventario']."</option>";
+      //     }
+      //   ?>
+      ?>
+      </select>
+
+
+
+
+
     </select>
     <!-- conectar con la BD con PHP -->
 
