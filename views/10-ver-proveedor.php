@@ -1,4 +1,16 @@
 <!--Ver proveedores-->
+
+<!--Código PHP para mensajes o error-->
+<?php
+if (isset($_GET['error'])) {
+  echo "<p style='color:red;'>".$_GET['error']."</p>";
+}
+if (isset($_GET['mensaje'])) {
+  echo "<p style='color:green;'>".$_GET['mensaje']."</p>";
+}
+?>
+
+<!--Código HTML-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,36 +31,29 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Merck</td>
-        <td>merck@gmail.com</td>
-        <td>321 123 4569</td>
-        <td>
-          <a href="editar_proveedor.html?id=1" title="Editar proveedor">✏️</a>
-          <a href="eliminar_proveedor.php?id=1"  title="Eliminar proveedor">🗑️</a>
-        </td>
-      </tr>
+      <?php
+      include("../includes/config.php");
+      session_start();
 
-      <tr>
-        <td>Oriente lab</td>
-        <td>orientelab@gmail.com</td>
-        <td>321 321 4569</td>
-        <td>
-          <a href="editar_proveedor.html?id=2" title="Editar proveedor">✏️</a>
-          <a href="eliminar_proveedor.php?id=2"  title="Eliminar proveedor">🗑️</a>
-        </td>
-      </tr>
+      $sql = "SELECT id_proveedor, nombre_proveedor, email_proveedor, contacto_proveedor FROM proveedor";
+      $resultado = $conexion->query($sql);
 
-      <tr>
-        <td>Pan reac</td>
-        <td>panreac@gmail.com</td>
-        <td>321 321 9654</td>
-        <td>
-          <a href="editar_proveedor.html?id=3" title="Editar proveedor">✏️</a>
-          <a href="eliminar_proveedor.php?id=3"  title="Eliminar proveedor">🗑️</a>
-        </td>
-      </tr>
-      <!-- conectar con PHP T-T  -->
+      if ($resultado && $resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td>" . htmlspecialchars($fila['nombre_proveedor']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['email_proveedor']) . "</td>";
+          echo "<td>" . htmlspecialchars($fila['contacto_proveedor']) . "</td>";
+          echo "<td>
+                  <a href='9-crear-proveedor.php?id_proveedor=" . $fila['id_proveedor'] . "' title='Editar proveedor'>✏️</a>
+                  <a href='../controladores/10-eliminar_proveedor_backend.php?id_proveedor=" . $fila['id_proveedor'] . "' title='Eliminar proveedor' onclick=\"return confirm('¿Seguro que desea eliminar proveedor?');\">🗑️</a>
+                </td>";
+          echo "</tr>";
+        }
+      } else {
+        echo "<tr><td colspan='4'>No hay proveedores registrados.</td></tr>";
+      }
+      ?>
     </tbody>
   </table>
   <a href="2-dashboard.php" class="btn-regresar">⬅️ Regresar</a>
