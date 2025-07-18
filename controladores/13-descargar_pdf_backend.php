@@ -4,13 +4,13 @@ include("../includes/config.php");
 
 use Mpdf\Mpdf;
 
-// 🔍 Recuperar filtros
+// Recuperar filtros
 $fecha_inicio = $_GET['fecha_inicio'];
 $fecha_fin = $_GET['fecha_fin'];
 $id_inventario = $_GET['id_inventario'];
 $estado_insumo = $_GET['estado_insumo'];
 
-// 🔎 Consulta con JOIN (igual que en tu vista)
+// Consulta con JOIN (igual que en tu vista)
 $sql = "SELECT insumo.*, inventario.nombre_inventario 
         FROM insumo 
         JOIN inventario ON insumo.id_inventario = inventario.id_inventario 
