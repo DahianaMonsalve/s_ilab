@@ -1,4 +1,4 @@
---Scripts base de datos del proyecto
+--Scripts base de datos del proyecto sin estandarizar
 drop DATABASE if exists s_ilabs;
 
 --Creación de la base de datos
