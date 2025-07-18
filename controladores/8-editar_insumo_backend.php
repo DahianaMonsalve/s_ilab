@@ -8,8 +8,8 @@ session_start();
 $id_insumo = $_POST['id_insumo'];
 $nombre_insumo = $_POST['nombre_insumo'];
 $descripcion = $_POST['descripcion'];
-$cantidad = $_POST['cantidad'];
-$stock_minimo = $_POST['stock_minimo'];
+$cantidad = (int) $_POST['cantidad'];
+$stock_minimo = (int)$_POST['stock_minimo'];
 $fecha_vencimiento = $_POST['fecha_vencimiento'];
 $lote = $_POST['lote'];
 $cas = $_POST['cas'];
@@ -29,6 +29,27 @@ if (
   header("Location: ../views/7-crear-insumo.php?error=Faltan%20datos%20para%20editar");
   exit();
 }
+
+//Validación de vencimiento anterior a la fecha
+$fecha_vencimiento = $_POST['fecha_vencimiento'];
+$hoy = date('Y-m-d');
+if ($fecha_vencimiento < $hoy) {
+  header("Location: ../views/7-crear-insumo.php?error=La%20fecha%20de%20vencimiento%20no%20puede%20ser%20anterior%20a%20hoy");
+  exit();
+}
+
+//Validación de cantidad, no puede ser negativa
+if ($cantidad < 0) {
+  header("Location: ../views/7-crear-insumo.php?error=La%20cantidad%20no%20puede%20ser%20negativa");
+  exit();
+}
+
+//Validación de stock mínimo, no puede ser negativa
+if ($stock_minimo < 0) {
+  header("Location: ../views/7-crear-insumo.php?error=Stock%20mínimo%20no%20puede%20ser%20negativo");
+  exit();
+}
+
 
 // Actualizar datos en la base
 $sql = "UPDATE insumo SET nombre_insumo=?, descripcion=?, cantidad=?, stock_minimo=?, fecha_vencimiento=?, lote=?, cas=?, marca=?, estado_insumo=?, id_inventario=?, fecha_registro_insumo=?, id_usuario=?,id_proveedor=? WHERE id_insumo=?";
