@@ -80,7 +80,7 @@ if (!isset($_SESSION['usuario'])) {
       <div class="card salir">
         <div class="titulo">🚪 <br> Cerrar sesión</div>
         <div class="acciones">
-          <a href="13-logout.php">Salir ahora</a> <!--Para reedirigir a la salida con el archivo logout-->
+          <a href="logout.php">Salir ahora</a> <!--Para reedirigir a la salida con el archivo logout-->
         </div>
       </div>
 
