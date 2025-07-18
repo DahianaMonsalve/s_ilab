@@ -1,8 +1,5 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+// Funcionamiento de creación de usuario
 include("../includes/config.php"); //conexión a la base a través del archivo anteriormente configurado
 session_start(); 
 

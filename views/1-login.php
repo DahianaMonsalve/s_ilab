@@ -15,7 +15,7 @@ if (isset($_GET['mensaje'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head> 
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Inicio sesión - Supplies iLab</title>
 	<link href="../css/1-login.css" rel="stylesheet">
