@@ -54,7 +54,11 @@ $resultado = $stmt->get_result();
   <link rel="stylesheet" href="../css/13-generar-reporte.css">
 </head>
 <body>
-    <form action="descargar_pdf.php" method="GET" style="margin-bottom: 15px;">
+    <form action="../controladores/13-descargar_pdf_backend.php" method="GET" style="margin-bottom: 15px;">
+    <input type="hidden" name="fecha_inicio" value="<?= htmlspecialchars($_GET['fecha_inicio']) ?>">
+    <input type="hidden" name="fecha_fin" value="<?= htmlspecialchars($_GET['fecha_fin']) ?>">
+    <input type="hidden" name="id_inventario" value="<?= htmlspecialchars($_GET['id_inventario']) ?>">
+    <input type="hidden" name="estado_insumo" value="<?= htmlspecialchars($_GET['estado_insumo']) ?>">
     <button type="submit" class="boton">🧾 Descargar PDF</button>
     </form>
   <h2>📄 Resultados del reporte</h2>
