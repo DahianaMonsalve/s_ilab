@@ -15,11 +15,11 @@ if (isset($_GET['mensaje'])) {
 include("../includes/config.php");
 session_start();
 
-// Consulta de usuarios
-$sql = "SELECT id_usuario, nombre_usuario, email, rol FROM usuario";
+//Consulta de usuarios activos solamente
+$sql = "SELECT id_usuario, nombre_usuario, email, rol FROM usuario WHERE estado_usuario = 'activo'";
 $resultado = $conexion->query($sql);
 
-// Traducción del rol -- Probar
+//Traducción del rol 
 function mostrarRol($codigoRol) {
   switch ($codigoRol) {
     case 'admin': return 'Administrador';
@@ -58,6 +58,7 @@ function mostrarRol($codigoRol) {
           <td><?php echo mostrarRol($fila['rol']); ?></td>
           <td>
             <a href="3-crear-usuario.php?id_usuario=<?php echo $fila['id_usuario']; ?>" title="Editar usuario">✏️</a>
+            <a href="../controladores/4-archivar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Estás segura de que deseas archivar este usuario?');" title="Archivar usuario">📁</a>
             <a href="../controladores/4-eliminar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Estás segura de que deseas eliminar este usuario?');" title="Eliminar usuario">🗑️</a>
           </td>
         </tr>
