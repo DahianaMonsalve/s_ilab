@@ -49,6 +49,10 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+.estado.sellado {color: #1d7a34;}
+.estado.abierto {color: #c08900;}
+.estado.terminado {color: #b00000;}
+
 a {
   margin-right: 10px;
   color: #c73744;

@@ -22,7 +22,9 @@ if (isset($_GET['id_insumo'])) {
   $modo = "editar";
   $id_insumo = $_GET['id_insumo'];
 
-  $sql = "SELECT nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, lote, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario, id_proveedor FROM insumo WHERE id_insumo=?";
+  $sql = "SELECT nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, lote, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario, id_proveedor 
+  FROM insumo 
+  WHERE id_insumo=?";
 
   $stmt = $conexion->prepare($sql);
   $stmt->bind_param("i", $id_insumo);
@@ -85,7 +87,7 @@ if (isset($_GET['id_insumo'])) {
     <label for="estado_insumo">Estado del insumo</label>
     <select id="estado_insumo" name="estado_insumo" value="<?php echo htmlspecialchars($estado_insumo); ?>" required>
       <option option value="insumo_sellado" <?= ($estado_insumo == "insumo_sellado") ? 'selected' : '' ?>>Sellado</option>
-      <option value="insumo_abierto" <?= ($estado_insumo == "insumo_abierto") ? 'selected' : '' ?>">Abierto</option>
+      <option value="insumo_abierto" <?= ($estado_insumo == "insumo_abierto") ? 'selected' : '' ?>>Abierto</option>
       <option value="insumo_terminado" <?= ($estado_insumo == "insumo_terminado") ? 'selected' : '' ?>>Terminado</option>
     </select>
 

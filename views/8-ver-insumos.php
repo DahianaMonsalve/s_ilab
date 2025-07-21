@@ -8,6 +8,16 @@ if (isset($_GET['error'])) {
 if (isset($_GET['mensaje'])) {
   echo "<p style='color:green;'>".$_GET['mensaje']."</p>";
 }
+
+//Función para traducir insumo_xx a Sellado, etc.
+function estadoInsumo($estado_insumo) {
+  switch ($estado_insumo) {
+    case "insumo_sellado": return "Sellado";
+    case "insumo_abierto": return "Abierto";
+    case "insumo_terminado": return "Terminado";
+    default: return "Desconocido";
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +37,7 @@ if (isset($_GET['mensaje'])) {
         <th>Fecha de registro</th>
         <th>Nombre del insumo</th>
         <th>Cantidad</th>
+        <th>Estado</th>
         <th>Fecha de vencimiento</th>
         <th>Lote</th>
         <th>Proveedor</th>
@@ -42,8 +53,8 @@ if (isset($_GET['mensaje'])) {
       $sql = "
       SELECT 
       insumo.id_insumo, insumo.nombre_insumo, insumo.fecha_vencimiento, 
-      insumo.fecha_registro_insumo, insumo.cantidad, insumo.lote, 
-      proveedor.nombre_proveedor, inventario.nombre_inventario
+      insumo.fecha_registro_insumo, insumo.cantidad, insumo.estado_insumo, 
+      insumo.lote, proveedor.nombre_proveedor, inventario.nombre_inventario
       FROM insumo
       JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
       JOIN inventario ON insumo.id_inventario = inventario.id_inventario
@@ -58,14 +69,20 @@ if (isset($_GET['mensaje'])) {
           echo "<td>" . htmlspecialchars($fila['fecha_registro_insumo']) . "</td>";
           echo "<td>" . htmlspecialchars($fila['nombre_insumo']) . "</td>";
           echo "<td>" . htmlspecialchars($fila['cantidad']) . "</td>";
+
+
+          echo "<td class='estado " . str_replace('insumo_','',$fila['estado_insumo']) . "'>" . estadoInsumo($fila['estado_insumo']) . "</td>";
+
+          
+
           echo "<td>" . htmlspecialchars($fila['fecha_vencimiento']) . "</td>";
           echo "<td>" . htmlspecialchars($fila['lote']) . "</td>";
           echo "<td>" . htmlspecialchars($fila['nombre_proveedor']) . "</td>";
           echo "<td>" . htmlspecialchars($fila['nombre_inventario']) . "</td>";
           echo "<td>
-                  <a href='7-crear-insumo.php?id_insumo=" . $fila['id_insumo'] . "' title='Editar insumo'>✏️</a>
-                  <a href='../controladores/8-eliminar_insumo_backend.php?id_insumo=" . $fila['id_insumo'] . "' title='Eliminar insumo' onclick=\"return confirm('¿Eliminar insumo?');\">🗑️</a>
-                </td>";
+              <a href='7-crear-insumo.php?id_insumo=" . $fila['id_insumo'] . "' title='Editar insumo'>✏️</a>
+              <a href='../controladores/8-eliminar_insumo_backend.php?id_insumo=" . $fila['id_insumo'] . "' title='Eliminar insumo' onclick=\"return confirm('¿Eliminar insumo?');\">🗑️</a>
+            </td>";
           echo "</tr>";
         }
       } else {
