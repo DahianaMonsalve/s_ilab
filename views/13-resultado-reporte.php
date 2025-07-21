@@ -1,19 +1,22 @@
 <?php
-include("../includes/config.php");
+include("../includes/config.php"); //Conexión a la bd
 
+//Obtención de parámetros
 $fecha_inicio = $_GET['fecha_inicio'];
 $fecha_fin = $_GET['fecha_fin'];
 $id_inventario = $_GET['id_inventario'];
 $estado_insumo = $_GET['estado_insumo'];
 
-//  Contrucción de la consulta base
-$sql = "SELECT insumo.*, inventario.nombre_inventario 
+// Contrucción de la consulta base
+$sql = "SELECT insumo.*, inventario.nombre_inventario, proveedor.nombre_proveedor 
         FROM insumo 
         JOIN inventario ON insumo.id_inventario = inventario.id_inventario 
+        JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
         WHERE insumo.fecha_registro_insumo BETWEEN ? AND ?";
 $parametros = [$fecha_inicio, $fecha_fin];
 $tipos = "ss";
 
+//Función para traducir insumo_xx a Sellado, etc.
 function estadoInsumo($estado_insumo) {
   switch ($estado_insumo) {
     case "insumo_sellado": return "Sellado";
@@ -23,20 +26,21 @@ function estadoInsumo($estado_insumo) {
   }
 }
 
-//  Filtramos por si se seleccionó inventario
+//Filtramos por si se seleccionó inventario
 if (!empty($id_inventario)) {
   $sql .= " AND insumo.id_inventario = ?";
   $parametros[] = $id_inventario;
   $tipos .= "i";
 }
 
-//  Filtramos si se seleccionó estado del insumo
+// Filtramos si se seleccionó estado del insumo
 if (!empty($estado_insumo)) {
   $sql .= " AND insumo.estado_insumo = ?";
   $parametros[] = $estado_insumo;
   $tipos .= "s";
 }
 
+//Consulta
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param($tipos, ...$parametros);
 $stmt->execute();
@@ -59,7 +63,7 @@ $resultado = $stmt->get_result();
     <input type="hidden" name="fecha_fin" value="<?= htmlspecialchars($_GET['fecha_fin']) ?>">
     <input type="hidden" name="id_inventario" value="<?= htmlspecialchars($_GET['id_inventario']) ?>">
     <input type="hidden" name="estado_insumo" value="<?= htmlspecialchars($_GET['estado_insumo']) ?>">
-    <button type="submit" class="boton">🧾 Descargar PDF</button>
+    <button type="submit" class="boton">📂 Descargar PDF</button>
     </form>
   <h2>📄 Resultados del reporte</h2>
     <table>
@@ -69,6 +73,7 @@ $resultado = $stmt->get_result();
         <th>Nombre</th>
         <th>Cantidad</th>
         <th>Inventario</th>
+        <th>Proveedor</th>
         <th>Estado</th>
         <th>Fecha de registro</th>
         <th>Fecha de vencimiento</th>
@@ -82,6 +87,7 @@ $resultado = $stmt->get_result();
             <td><?= htmlspecialchars($fila['nombre_insumo']) ?></td>
             <td><?= htmlspecialchars($fila['cantidad']) ?></td>
             <td><?= htmlspecialchars($fila['nombre_inventario']) ?></td>
+            <td><?= htmlspecialchars($fila['nombre_proveedor']) ?></td> 
             <td class="estado <?= str_replace('insumo_', '', $fila['estado_insumo']) ?>"><?= estadoInsumo($fila['estado_insumo']) ?></td>
             <td><?= htmlspecialchars($fila['fecha_registro_insumo']) ?></td>
             <td><?= htmlspecialchars($fila['fecha_vencimiento']) ?></td>
