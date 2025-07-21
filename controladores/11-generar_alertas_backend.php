@@ -3,7 +3,7 @@
 session_start();
 include("../includes/config.php");
 
-//Traducción del estado del insumo .-. 
+//Traducción del estado del insumo 
 function estadoInsumo($estado) {
   switch ($estado) {
     case "insumo_sellado": return "Sellado";
@@ -38,7 +38,7 @@ $alertas_vencimiento = $stmt_venc->get_result();
 $sql_vencidos_activos = "
 SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo,
        insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
-       'Reactivo vencido sin cerrar' AS tipo_alerta
+       'Insumo vencido' AS tipo_alerta
 FROM insumo
 JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
 WHERE insumo.fecha_vencimiento < ?
