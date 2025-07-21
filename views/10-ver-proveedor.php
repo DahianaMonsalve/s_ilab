@@ -35,7 +35,12 @@ if (isset($_GET['mensaje'])) {
       include("../includes/config.php");
       session_start();
 
-      $sql = "SELECT id_proveedor, nombre_proveedor, email_proveedor, contacto_proveedor FROM proveedor";
+      $sql = "
+      SELECT id_proveedor, nombre_proveedor, email_proveedor, contacto_proveedor 
+      FROM proveedor 
+      WHERE estado_proveedor = 'activo'
+      ";
+
       $resultado = $conexion->query($sql);
 
       if ($resultado && $resultado->num_rows > 0) {
@@ -46,6 +51,7 @@ if (isset($_GET['mensaje'])) {
           echo "<td>" . htmlspecialchars($fila['contacto_proveedor']) . "</td>";
           echo "<td>
                   <a href='9-crear-proveedor.php?id_proveedor=" . $fila['id_proveedor'] . "' title='Editar proveedor'>✏️</a>
+                  <a href='../controladores/10-archivar_proveedor_backend.php?id_proveedor=" . $fila['id_proveedor'] . "' title='Archivar proveedor' onclick=\"return confirm('¿Seguro que desea archivar proveedor?');\">📁</a>
                   <a href='../controladores/10-eliminar_proveedor_backend.php?id_proveedor=" . $fila['id_proveedor'] . "' title='Eliminar proveedor' onclick=\"return confirm('¿Seguro que desea eliminar proveedor?');\">🗑️</a>
                 </td>";
           echo "</tr>";
