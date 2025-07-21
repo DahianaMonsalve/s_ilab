@@ -23,7 +23,7 @@ $datos = $resultado->fetch_assoc();
 
 //Si tiene trazabilidad, mostrar advertencia de que sólo se puede archivar
 if ($datos['total_traza'] > 0) {
-  header("Location: ../views/10-ver-proveedor.php?error=El%20proveedor%20tiene%20trazabilidad%20en%20el%20sistema%20(insumos)%20y%20no%20puede%20ser%20eliminado.%20Solo%20puede%20ser%20archivado.");
+  header("Location: ../views/10-ver-proveedor.php?error=El%20proveedor%20tiene%20trazabilidad%20en%20el%20sistema%20(insumos)%20y%20no%20puede%20ser%20eliminado.%20Solo%20puede%20ser%20archivado📁.");
   exit;
 }
 
