@@ -34,7 +34,12 @@ if (isset($_GET['mensaje'])) {
       include("../includes/config.php");
       session_start();
 
-      $sql = "SELECT id_inventario, nombre_inventario, fecha_registro, estado_inventario FROM inventario";
+      $sql = "
+      SELECT id_inventario, nombre_inventario, fecha_registro, estado_inventario 
+      FROM inventario 
+      WHERE estado_inventario IN ('Activo', 'Inactivo')
+      ";
+
       $resultado = $conexion->query($sql);
 
       if ($resultado && $resultado->num_rows > 0) {
@@ -45,7 +50,8 @@ if (isset($_GET['mensaje'])) {
           echo "<td>" . htmlspecialchars($fila['estado_inventario']) . "</td>";
           echo "<td>
                   <a href='5-crear-inventario.php?id_inventario=" . $fila['id_inventario'] . "' title='Editar inventario'>✏️</a>
-                  <a href='../controladores/6-eliminar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Eliminar inventario' onclick=\"return confirm('¿Eliminar inventario?');\">🗑️</a>
+                  <a href='../controladores/6-archivar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Eliminar inventario' onclick=\"return confirm('¿Seguro desea archivar el inventario?');\">📁</a>
+                  <a href='../controladores/6-eliminar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Eliminar inventario' onclick=\"return confirm('¿Seguro desea eliminar el inventario?');\">🗑️</a>
                 </td>";
           echo "</tr>";
         }
