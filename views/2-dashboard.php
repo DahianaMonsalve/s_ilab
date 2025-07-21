@@ -19,6 +19,7 @@ if (!isset($_SESSION['usuario'])) {
 <body>
   <h1>Bienvenido a Supplies iLab</h1>
 
+  <!-- Cotenedor donde van las tarjetas-->
   <div class="dashboard">
    
     <!--Espacio donde van las tarjetas desplegables-->
@@ -33,7 +34,7 @@ if (!isset($_SESSION['usuario'])) {
         </div>
       </div>
 
-      <!-- Tarjeta: Inventario -->
+      <!-- Tarjeta individuales -->
       <div class="card">
         <div class="titulo">📦 <br> Inventario</div>
         <div class="acciones">
