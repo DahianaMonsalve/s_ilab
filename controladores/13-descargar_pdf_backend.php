@@ -54,7 +54,7 @@ $html .= '<table border="1" style="width:100%; border-collapse:collapse;">
   </thead><tbody>';
 
 //Traducción del estado del insumo .-. 
-function estadoLegible($estado) {
+function estadoInsumo($estado) {
   switch ($estado) {
     case "insumo_sellado": return "Sellado";
     case "insumo_abierto": return "Abierto";
@@ -69,7 +69,7 @@ while ($fila = $resultado->fetch_assoc()) {
     <td>' . htmlspecialchars($fila['cantidad']) . '</td>
     <td>' . htmlspecialchars($fila['nombre_inventario']) . '</td>
     <td>' . htmlspecialchars($fila['nombre_proveedor']) . '</td>
-    <td>' . estadoLegible($fila['estado_insumo']) . '</td>
+    <td>' . estadoInsumo($fila['estado_insumo']) . '</td>
     <td>' . htmlspecialchars($fila['fecha_registro_insumo']) . '</td>
     <td>' . htmlspecialchars($fila['fecha_vencimiento']) . '</td>
   </tr>';
