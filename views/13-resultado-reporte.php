@@ -23,7 +23,7 @@ function estadoInsumo($estado_insumo) {
     case "insumo_abierto": return "Abierto";
     case "insumo_terminado": return "Terminado";
     default: return "Desconocido";
-  }
+   }
 }
 
 //Filtramos por si se seleccionó inventario
