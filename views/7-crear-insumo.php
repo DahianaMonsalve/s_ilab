@@ -95,7 +95,11 @@ if (isset($_GET['id_insumo'])) {
     <select id="id_proveedor" name="id_proveedor" required>
       <option value="">-- Selecciona un proveedor --</option>
       <?php
-        $sql = "SELECT id_proveedor, nombre_proveedor FROM proveedor";
+        $sql = "
+        SELECT id_proveedor, nombre_proveedor 
+        FROM proveedor
+        WHERE estado_proveedor = 'activo'
+        ";
         $resultado = $conexion->query($sql);
         while ($fila = $resultado->fetch_assoc()) {
           $selected = ($fila['id_proveedor'] == $id_proveedor) ? 'selected' : '';
@@ -104,12 +108,15 @@ if (isset($_GET['id_insumo'])) {
       ?>
     </select>
 
-
     <label for="id_inventario">Tipo de inventario al que pertenece:</label>
     <select id="id_inventario" name="id_inventario" required>
       <option value="">-- Selecciona un inventario --</option>
       <?php
-        $sql = "SELECT id_inventario, nombre_inventario FROM inventario";
+        $sql = "
+        SELECT id_inventario, nombre_inventario
+        FROM inventario
+        WHERE estado_inventario = 'activo'
+        ";
         $resultado = $conexion->query($sql);
         while ($fila = $resultado->fetch_assoc()) {
           $selected = ($fila['id_inventario'] == $id_inventario) ? 'selected' : '';
