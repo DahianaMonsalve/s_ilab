@@ -2,7 +2,7 @@
 include("../includes/config.php");
 session_start();
 
-// Validar que venga el ID
+// Validar que venga el ID por el método get
 if (!isset($_GET['id_inventario'])) {
   header("Location: ../views/6-ver-inventarios.php?error=ID%20no%20proporcionado");
   exit();
@@ -10,7 +10,7 @@ if (!isset($_GET['id_inventario'])) {
 
 $id_inventario = $_GET['id_inventario'];
 
-// Eliminar usuario por ID
+// Eliminar inventario por ID
 $sql = "DELETE FROM inventario WHERE id_inventario=?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $id_inventario);
