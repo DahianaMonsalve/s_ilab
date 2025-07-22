@@ -2,6 +2,9 @@
 
 <!--Código PHP para mensajes o error-->
 <?php
+include("../includes/config.php");
+session_start();
+
 if (isset($_GET['error'])) {
   echo "<p style='color:red;'>".$_GET['error']."</p>";
 }
@@ -11,11 +14,12 @@ if (isset($_GET['mensaje'])) {
 
 //Restricción de entrada a la vista según usuario
 //------------------------------------------------
-if ($_SESSION['rol'] === 'analista_compras') {
-  header("Location: acceso_denegado.php");
+if ($_SESSION['rol'] === 'compras') {
+  header("Location: 14-acceso-denegado.php");
   exit();
 }
 //------------------------------------------------
+
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +43,6 @@ if ($_SESSION['rol'] === 'analista_compras') {
     </thead>
     <tbody>
       <?php
-      include("../includes/config.php");
-      session_start();
-
       $sql = "
       SELECT id_inventario, nombre_inventario, fecha_registro, estado_inventario 
       FROM inventario 

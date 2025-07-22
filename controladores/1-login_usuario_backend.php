@@ -21,7 +21,7 @@ if ($result->num_rows === 1) { //result es la consulta guardada, un atritubuto e
     if (password_verify($password, $datos['password'])) {
         $_SESSION['usuario'] = $usuario; // Guardar en sesión
         $_SESSION['id_usuario'] = $datos['id_usuario']; // Guarda el id del usuario para futura trazabilidad
-        $_SESSION['rol'] = $usuario['rol']; //se guarda el rol para permisos
+        $_SESSION['rol'] = $datos['rol']; //se guarda el rol para permisos
         header("Location: ../views/2-dashboard.php"); // Redirige al dashboard
     } else {
         header("Location: ../views/1-login.php?error=Contraseña incorrecta"); // Cuando la contraseña es incorrecta

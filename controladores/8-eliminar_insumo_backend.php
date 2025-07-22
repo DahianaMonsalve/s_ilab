@@ -2,6 +2,14 @@
 include("../includes/config.php");
 session_start();
 
+//Restricción de entrada a la vista según usuario
+//------------------------------------------------
+if ($_SESSION['rol'] === 'compras') {
+  header("Location: ../views/14-acceso-denegado.php");
+  exit();
+}
+//------------------------------------------------
+
 // Validar que venga el ID
 if (!isset($_GET['id_insumo'])) {
   header("Location: ../views/8-ver-insumos.php?error=ID%20no%20proporcionado");

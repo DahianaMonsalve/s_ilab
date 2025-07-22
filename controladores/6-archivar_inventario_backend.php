@@ -9,6 +9,15 @@ if (!$id_inventario) {
   exit;
 }
 
+//Restricción de entrada a la vista según usuario
+//------------------------------------------------
+if ($_SESSION['rol'] === 'insumos') {
+  header("Location: ../views/14-acceso-denegado.php");
+  exit();
+}
+//------------------------------------------------
+
+
 //Validar trazabilidad en el sistema
 $sql_trazabilidad = "
   SELECT COUNT(*) AS total_traza 
