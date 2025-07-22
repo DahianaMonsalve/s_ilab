@@ -17,7 +17,7 @@ session_start();
 
 //Restricción de entrada a la vista según usuario
 //------------------------------------------------
-if ($_SESSION['rol'] === 'analista_compras') {
+if ($_SESSION['rol'] === 'analista_compras' && $_SESSION['rol'] === 'analista_insumos') {
   header("Location: acceso_denegado.php");
   exit();
 }
