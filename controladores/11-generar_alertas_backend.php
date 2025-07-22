@@ -19,26 +19,25 @@ $fecha_limite = date("Y-m-d", strtotime("+30 days"));
 
 //Consulta: alerta por vencimiento próximo
 $sql_vencimiento = "
-SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo,
-       insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
-       'Fecha de vencimiento próxima' AS tipo_alerta
+SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo, insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
+'Fecha de vencimiento próxima' AS tipo_alerta
 FROM insumo
 JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
 WHERE insumo.fecha_vencimiento <= ? 
+AND insumo.fecha_vencimiento >= ?
 AND insumo.estado_insumo != 'insumo_terminado'
 ORDER BY insumo.fecha_vencimiento ASC
 ";
 $stmt_venc = $conexion->prepare($sql_vencimiento);
-$stmt_venc->bind_param("s", $fecha_limite);
+$stmt_venc->bind_param("ss", $fecha_limite, $fecha_actual);
 $stmt_venc->execute();
 $alertas_vencimiento = $stmt_venc->get_result();
 
 
 //Consulta:  alerta insumos vencidos aún activos (estado insumo abierto o sellado)
 $sql_vencidos_activos = "
-SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo,
-       insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
-       'Insumo vencido' AS tipo_alerta
+SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo, insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
+'Insumo vencido' AS tipo_alerta
 FROM insumo
 JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
 WHERE insumo.fecha_vencimiento < ?
@@ -51,7 +50,7 @@ $stmt_vencido->execute();
 $alertas_vencidos = $stmt_vencido->get_result();
 
 
-//Consulta: alerta por bajo stock por CAS
+//Consulta: alerta por bajo stock por CAS, donde stock <1
 $sql_stock = "
 SELECT cas 
 FROM insumo 
@@ -69,9 +68,8 @@ $alertas_stock = [];
 if (!empty($cas_alerta)) {
   $cas_in = str_repeat("?,", count($cas_alerta) - 1) . "?";
   $sql_insumos_alerta = "
-  SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo,
-         insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
-         'Stock mínimo por CAS' AS tipo_alerta
+  SELECT insumo.id_insumo, insumo.fecha_registro_insumo, insumo.nombre_insumo, insumo.estado_insumo, insumo.fecha_vencimiento, insumo.lote, proveedor.nombre_proveedor, 
+  'Stock mínimo por CAS' AS tipo_alerta
   FROM insumo
   JOIN proveedor ON insumo.id_proveedor = proveedor.id_proveedor
   WHERE cas IN ($cas_in)
