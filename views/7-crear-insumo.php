@@ -16,6 +16,14 @@ if (isset($_GET['mensaje'])) {
 include("../includes/config.php");
 session_start();
 
+//Restricción de entrada a la vista según usuario
+//------------------------------------------------
+if ($_SESSION['rol'] === 'analista_compras') {
+  header("Location: acceso_denegado.php");
+  exit();
+}
+//------------------------------------------------
+
 $modo = "crear"; 
 
 //Si viene un id_insumo, entra a modo editar, sino, sale del primer if y crea un nuevo insumo

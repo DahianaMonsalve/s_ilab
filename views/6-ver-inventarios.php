@@ -8,6 +8,14 @@ if (isset($_GET['error'])) {
 if (isset($_GET['mensaje'])) {
   echo "<p style='color:green;'>".$_GET['mensaje']."</p>";
 }
+
+//Restricción de entrada a la vista según usuario
+//------------------------------------------------
+if ($_SESSION['rol'] === 'analista_compras') {
+  header("Location: acceso_denegado.php");
+  exit();
+}
+//------------------------------------------------
 ?>
 
 <!DOCTYPE html>

@@ -7,6 +7,7 @@
     body {
       font-family: Arial;
       background-color: #fff3f3;
+      background-image: url("../assets/fondo.jpg");
       text-align: center;
       margin-top: 80px;
     }
