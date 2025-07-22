@@ -34,6 +34,20 @@ if (isset($_GET['id_insumo'])) {
   if ($stmt->num_rows > 0) {
     $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $lote, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo, $id_usuario, $id_proveedor);
     $stmt->fetch();
+
+    // Obtener estado y nombre del proveedor actual
+    $sql_prov = "SELECT estado_proveedor, nombre_proveedor FROM proveedor WHERE id_proveedor = ?";
+    $stmt_prov = $conexion->prepare($sql_prov);
+    $stmt_prov->bind_param("i", $id_proveedor);
+    $stmt_prov->execute();
+    $res_prov = $stmt_prov->get_result();
+    $datos_prov = $res_prov->fetch_assoc();
+
+    $estado_proveedor = $datos_prov['estado_proveedor'];
+    $nombre_proveedor = $datos_prov['nombre_proveedor'];
+
+
+
     if ($modo === "editar") {
     $sql_estado = "SELECT estado_inventario, nombre_inventario FROM inventario WHERE id_inventario = ?";
     $stmt_estado = $conexion->prepare($sql_estado);
@@ -104,21 +118,34 @@ if (isset($_GET['id_insumo'])) {
     </select>
 
     <label for="id_proveedor">Proveedor:</label>
-    <select id="id_proveedor" name="id_proveedor" required>
-      <option value="">-- Selecciona un proveedor --</option>
-      <?php
-        $sql = "
-        SELECT id_proveedor, nombre_proveedor 
-        FROM proveedor
-        WHERE estado_proveedor = 'activo'
-        ";
-        $resultado = $conexion->query($sql);
-        while ($fila = $resultado->fetch_assoc()) {
-          $selected = ($fila['id_proveedor'] == $id_proveedor) ? 'selected' : '';
-          echo "<option value='".$fila['id_proveedor']."' $selected>".$fila['nombre_proveedor']."</option>";
-        }
-      ?>
-    </select>
+    <?php 
+    if ($modo === "editar" && $estado_proveedor === "archivado") { ?>
+      <select id="id_proveedor" disabled>
+        <option value="<?= $id_proveedor ?>">
+          <?= htmlspecialchars($nombre_proveedor) ?> (archivado)
+        </option>
+      </select>
+      <input type="hidden" name="id_proveedor" value="<?= $id_proveedor ?>">
+      <p class="msg-info">Este insumo está asociado a un proveedor archivado. No puede cambiarse.</p>
+    <?php } 
+      else { ?>
+        <select id="id_proveedor" name="id_proveedor" required>
+          <option value="">-- Selecciona un proveedor --</option>
+          <?php
+            $sql = "
+            SELECT id_proveedor, nombre_proveedor 
+            FROM proveedor
+            WHERE estado_proveedor = 'activo'
+            ";
+            $resultado = $conexion->query($sql);
+            while ($fila = $resultado->fetch_assoc()) {
+              $selected = ($fila['id_proveedor'] == $id_proveedor) ? 'selected' : '';
+              echo "<option value='".$fila['id_proveedor']."' $selected>".$fila['nombre_proveedor']."</option>";
+            }
+          ?>
+        </select>
+    <?php } ?>
+
 
     <!--Para edición de insumos cuyo inventario se archivó-->
     <label for="id_inventario">Tipo de inventario al que pertenece:</label>
