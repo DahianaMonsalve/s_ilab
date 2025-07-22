@@ -5,9 +5,13 @@
   <title>Acceso denegado - Supplies iLab</title>
   <style>
     body {
-      font-family: Arial;
-      background-color: #fff3f3;
+      font-family: "trebuchet ms", Arial, Helvetica, sans-serif;
+      background-color: #f2f2f271;
       background-image: url("../assets/fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
       text-align: center;
       margin-top: 80px;
     }
