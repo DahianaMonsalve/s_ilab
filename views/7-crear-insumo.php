@@ -16,55 +16,54 @@ if (isset($_GET['mensaje'])) {
 include("../includes/config.php");
 session_start();
 
-$modo = "crear"; //por defecto
+$modo = "crear"; 
 
+//Si viene un id_insumo, entra a modo editar, sino, sale del primer if y crea un nuevo insumo
 if (isset($_GET['id_insumo'])) {
   $modo = "editar";
   $id_insumo = $_GET['id_insumo'];
 
+  //Búsqueda del insumo en la BD donde id_insumo=?
   $sql = "SELECT nombre_insumo, descripcion, cantidad, stock_minimo, fecha_vencimiento, lote, cas, marca, estado_insumo, id_inventario, fecha_registro_insumo, id_usuario, id_proveedor 
   FROM insumo 
   WHERE id_insumo=?";
 
   $stmt = $conexion->prepare($sql);
-  $stmt->bind_param("i", $id_insumo);
+  $stmt->bind_param("i", $id_insumo); //Parámetro de la búsqueda
   $stmt->execute();
   $stmt->store_result();
 
+  //Obtención de datos de la búsqueda para guardar esos datos y editar sobre ellos, sino encuentra nada redirigé a error
   if ($stmt->num_rows > 0) {
     $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $lote, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo, $id_usuario, $id_proveedor);
     $stmt->fetch();
-
-    // Obtener estado y nombre del proveedor actual
+    
+    //Consulta del proveedor asociado
     $sql_prov = "SELECT estado_proveedor, nombre_proveedor FROM proveedor WHERE id_proveedor = ?";
     $stmt_prov = $conexion->prepare($sql_prov);
     $stmt_prov->bind_param("i", $id_proveedor);
     $stmt_prov->execute();
     $res_prov = $stmt_prov->get_result();
     $datos_prov = $res_prov->fetch_assoc();
-
     $estado_proveedor = $datos_prov['estado_proveedor'];
     $nombre_proveedor = $datos_prov['nombre_proveedor'];
 
-
-
-    if ($modo === "editar") {
+    //Consulta al inventario asociado al id_insumo
     $sql_estado = "SELECT estado_inventario, nombre_inventario FROM inventario WHERE id_inventario = ?";
     $stmt_estado = $conexion->prepare($sql_estado);
     $stmt_estado->bind_param("i", $id_inventario);
     $stmt_estado->execute();
     $result_estado = $stmt_estado->get_result();
     $datos_inv = $result_estado->fetch_assoc();
-
     $estado_inventario = $datos_inv['estado_inventario'];
     $nombre_inventario = $datos_inv['nombre_inventario'];
-}
-
+    
   } else {
     header("Location: 8-ver-insumos.php?error=Insumo%20no%20encontrado");
     exit();
   }
-} else {
+} 
+else {
   $nombre_insumo = $descripcion = $cantidad = $stock_minimo = $fecha_vencimiento = $lote = $cas = $marca = $estado_insumo = $id_inventario =  $fecha_registro_insumo = "";
 }
 ?>
@@ -117,6 +116,8 @@ if (isset($_GET['id_insumo'])) {
       <option value="insumo_terminado" <?= ($estado_insumo == "insumo_terminado") ? 'selected' : '' ?>>Terminado</option>
     </select>
 
+
+    <!--Para edición de insumos cuyo proveedor se archivó-->    
     <label for="id_proveedor">Proveedor:</label>
     <?php 
     if ($modo === "editar" && $estado_proveedor === "archivado") { ?>
@@ -126,7 +127,7 @@ if (isset($_GET['id_insumo'])) {
         </option>
       </select>
       <input type="hidden" name="id_proveedor" value="<?= $id_proveedor ?>">
-      <p class="msg-info">Este insumo está asociado a un proveedor archivado. No puede cambiarse.</p>
+      <p class="msg-info" style="color: #cc0000; font-size: 12px">Este insumo está asociado a un proveedor archivado. No puede cambiarse.</p>
     <?php } 
       else { ?>
         <select id="id_proveedor" name="id_proveedor" required>
@@ -157,6 +158,7 @@ if (isset($_GET['id_insumo'])) {
         </option>
       </select>
       <input type="hidden" name="id_inventario" value="<?= $id_inventario ?>">
+      <p class="msg-info" style="color: #cc0000; font-size: 12px">Este insumo está asociado a un inventario archivado. No puede cambiarse.</p>
     <?php } 
     else { ?>
       <select id="id_inventario" name="id_inventario" required>
@@ -176,7 +178,6 @@ if (isset($_GET['id_insumo'])) {
       </select>
       <?php 
     } ?>
-
 
 
     <label for="fecha_registro_insumo">Fecha de registro</label>
