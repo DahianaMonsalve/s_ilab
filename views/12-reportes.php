@@ -22,11 +22,7 @@
     <select id="id_inventario" name="id_inventario">
       <option value="">-- Selecciona un inventario --</option>
       <?php
-        $sql = "
-        SELECT id_inventario, nombre_inventario 
-        FROM inventario 
-        WHERE estado_inventario = 'activo'
-        ";
+        $sql = "SELECT id_inventario, nombre_inventario FROM inventario";
         $resultado = $conexion->query($sql);
         while ($fila = $resultado->fetch_assoc()) {
           $selected = ($fila['id_inventario'] == $id_inventario) ? 'selected' : '';
@@ -34,7 +30,7 @@
         }
       ?>
     </select>
-
+ 
     <label for="estado_insumo">Estado:</label>
     <select id="estado_insumo" name="estado_insumo">
       <option value="">-- Selecciona un estado del insumo --</option>

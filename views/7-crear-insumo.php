@@ -34,6 +34,18 @@ if (isset($_GET['id_insumo'])) {
   if ($stmt->num_rows > 0) {
     $stmt->bind_result($nombre_insumo, $descripcion, $cantidad, $stock_minimo, $fecha_vencimiento, $lote, $cas, $marca, $estado_insumo, $id_inventario, $fecha_registro_insumo, $id_usuario, $id_proveedor);
     $stmt->fetch();
+    if ($modo === "editar") {
+    $sql_estado = "SELECT estado_inventario, nombre_inventario FROM inventario WHERE id_inventario = ?";
+    $stmt_estado = $conexion->prepare($sql_estado);
+    $stmt_estado->bind_param("i", $id_inventario);
+    $stmt_estado->execute();
+    $result_estado = $stmt_estado->get_result();
+    $datos_inv = $result_estado->fetch_assoc();
+
+    $estado_inventario = $datos_inv['estado_inventario'];
+    $nombre_inventario = $datos_inv['nombre_inventario'];
+}
+
   } else {
     header("Location: 8-ver-insumos.php?error=Insumo%20no%20encontrado");
     exit();
@@ -108,22 +120,36 @@ if (isset($_GET['id_insumo'])) {
       ?>
     </select>
 
+    <!--Para edición de insumos cuyo inventario se archivó-->
     <label for="id_inventario">Tipo de inventario al que pertenece:</label>
-    <select id="id_inventario" name="id_inventario" required>
-      <option value="">-- Selecciona un inventario --</option>
-      <?php
-        $sql = "
-        SELECT id_inventario, nombre_inventario
-        FROM inventario
-        WHERE estado_inventario = 'activo'
-        ";
-        $resultado = $conexion->query($sql);
-        while ($fila = $resultado->fetch_assoc()) {
-          $selected = ($fila['id_inventario'] == $id_inventario) ? 'selected' : '';
-          echo "<option value='".$fila['id_inventario']."' $selected>".$fila['nombre_inventario']."</option>";
-        }
-      ?>
-    </select>
+    <?php 
+    if ($modo === "editar" && $estado_inventario === "archivado") { ?>
+      <select id="id_inventario" disabled>
+        <option value="<?= $id_inventario ?>">
+          <?= htmlspecialchars($nombre_inventario) ?> (archivado)
+        </option>
+      </select>
+      <input type="hidden" name="id_inventario" value="<?= $id_inventario ?>">
+    <?php } 
+    else { ?>
+      <select id="id_inventario" name="id_inventario" required>
+        <option value="">-- Selecciona un inventario --</option>
+        <?php
+          $sql = "
+          SELECT id_inventario, nombre_inventario
+          FROM inventario
+          WHERE estado_inventario = 'activo'
+          ";
+          $resultado = $conexion->query($sql);
+          while ($fila = $resultado->fetch_assoc()) {
+            $selected = ($fila['id_inventario'] == $id_inventario) ? 'selected' : '';
+            echo "<option value='".$fila['id_inventario']."' $selected>".$fila['nombre_inventario']."</option>";
+          }
+        ?>
+      </select>
+      <?php 
+    } ?>
+
 
 
     <label for="fecha_registro_insumo">Fecha de registro</label>

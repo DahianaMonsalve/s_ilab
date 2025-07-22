@@ -50,6 +50,20 @@ if ($stock_minimo < 0) {
   exit();
 }
 
+// Validar si el inventario está archivado
+$sql_estado_inv = "SELECT estado_inventario FROM inventario WHERE id_inventario = ?";
+$stmt_estado = $conexion->prepare($sql_estado_inv);
+$stmt_estado->bind_param("i", $id_inventario);
+$stmt_estado->execute();
+$resultado_estado = $stmt_estado->get_result();
+$estado = $resultado_estado->fetch_assoc();
+
+if ($estado['estado_inventario'] === 'archivado') {
+  // Redirigir con advertencia técnica
+  header("Location: ../views/7-crear-insumo.php?error=Este%20insumo%20está%20vinculado%20a%20un%20inventario%20archivado.%20No%20se%20puede%20cambiar%20su%20ubicación.");
+  exit();
+}
+
 
 // Actualizar datos en la base
 $sql = "UPDATE insumo SET nombre_insumo=?, descripcion=?, cantidad=?, stock_minimo=?, fecha_vencimiento=?, lote=?, cas=?, marca=?, estado_insumo=?, id_inventario=?, fecha_registro_insumo=?, id_usuario=?,id_proveedor=? WHERE id_insumo=?";
