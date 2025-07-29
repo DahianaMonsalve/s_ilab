@@ -59,7 +59,7 @@ if ($_SESSION['rol'] === 'compras') {
           echo "<td>" . htmlspecialchars($fila['estado_inventario']) . "</td>";
           echo "<td>
                   <a href='5-crear-inventario.php?id_inventario=" . $fila['id_inventario'] . "' title='Editar inventario'>✏️</a>
-                  <a href='../controladores/6-archivar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Eliminar inventario' onclick=\"return confirm('¿Seguro desea archivar el inventario?');\">📁</a>
+                  <a href='../controladores/6-archivar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Archivar inventario' onclick=\"return confirm('¿Seguro desea archivar el inventario?');\">📁</a>
                   <a href='../controladores/6-eliminar_inventario_backend.php?id_inventario=" . $fila['id_inventario'] . "' title='Eliminar inventario' onclick=\"return confirm('¿Seguro desea eliminar el inventario?');\">🗑️</a>
                 </td>";
           echo "</tr>";

@@ -66,8 +66,8 @@ function mostrarRol($codigoRol) {
           <td><?php echo mostrarRol($fila['rol']); ?></td>
           <td>
             <a href="3-crear-usuario.php?id_usuario=<?php echo $fila['id_usuario']; ?>" title="Editar usuario">✏️</a>
-            <a href="../controladores/4-archivar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Estás segura de que deseas archivar este usuario?');" title="Archivar usuario">📁</a>
-            <a href="../controladores/4-eliminar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Estás segura de que deseas eliminar este usuario?');" title="Eliminar usuario">🗑️</a>
+            <a href="../controladores/4-archivar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Seguro que desea archivar este usuario?');" title="Archivar usuario">📁</a>
+            <a href="../controladores/4-eliminar_usuario_backend.php?id_usuario=<?php echo $fila['id_usuario']; ?>" onclick="return confirm('¿Seguro que desea eliminar este usuario?');" title="Eliminar usuario">🗑️</a>
           </td>
         </tr>
       <?php } 

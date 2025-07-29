@@ -81,7 +81,7 @@ function estadoInsumo($estado_insumo) {
           echo "<td>" . htmlspecialchars($fila['nombre_inventario']) . "</td>";
           echo "<td>
               <a href='7-crear-insumo.php?id_insumo=" . $fila['id_insumo'] . "' title='Editar insumo'>✏️</a>
-              <a href='../controladores/8-eliminar_insumo_backend.php?id_insumo=" . $fila['id_insumo'] . "' title='Eliminar insumo' onclick=\"return confirm('¿Eliminar insumo?');\">🗑️</a>
+              <a href='../controladores/8-eliminar_insumo_backend.php?id_insumo=" . $fila['id_insumo'] . "' title='Eliminar insumo' onclick=\"return confirm('¿Seguro desea eliminar insumo?');\">🗑️</a>
             </td>";
           echo "</tr>";
         }
