@@ -1,10 +1,10 @@
 # 🧪 Supplies iLab – Sistema de gestión de insumos de laboratorio 🧪
 
-**Supplies iLab** es un proyecto web orientado a la gestión eficiente de insumos, inventarios, proveedores y alertas en entornos de laboratorio. Este sistema fue desarrollado como parte del componente de formación para adquirir el título de tecnóloga en análisis y desarrollo de software. Aquí, aplicamos principios de usabilidad, semántica HTML y diseño CSS responsivo, además de MySQL y próximamente PHP para lograr una conexión entre el Frontend y Backend, junto con Js para validación de datos y mejorar la experiencia de interactividad.
+**Supplies iLab** es un proyecto web orientado a la gestión eficiente de insumos, inventarios, proveedores y alertas en entornos de laboratorio. Este sistema fue desarrollado como parte del componente de formación para adquirir el título de tecnóloga en análisis y desarrollo de software. Aquí, aplicamos principios de usabilidad, semántica HTML y diseño CSS responsivo, además de gestión de bases de datos con MySQL e integración con PHP para lograr una conexión entre el Frontend y Backend.
 
 ## ✔ Propósito del proyecto ✔
 
-El objetivo principal del proyecto es facilitar el registro, consulta y control de insumos de laboratorio mediante un conjunto de vistas claras, organizadas y adaptadas a distintos dispositivos (o eso se espera). Supplies iLab también prepara las bases para futuras integraciones con tecnologías backend como PHP y bases de datos MySQL.
+El objetivo principal del proyecto es facilitar el registro, consulta y control de insumos de laboratorio mediante un conjunto de vistas claras, organizadas y adaptadas a distintos dispositivos, donde el control y manejo de insumos sea lo más simple posible y se alinee con normativas como la ISO 17025: 2017. 
 
 ##  Vistas incluidas
 
@@ -23,19 +23,19 @@ El objetivo principal del proyecto es facilitar el registro, consulta y control 
 - `13-resultado-reporte.php` → Reportes visuales o PDF
 - `14-acceso-denegado.php` → Pantalla de acceso denegado según rol
 
-> Cada vista está acompañada por su respectivo archivo `.css` para un diseño visual coherente, limpio y responsivo (o eso intento).
+> Cada vista está acompañada por su respectivo archivo `.css` para un diseño visual coherente, limpio y responsivo.
 
 ##  Características visuales
 
 - Diseño con colores suaves y tipografía legible  
 - Organización modular por componentes PHP   
 - Tablas y formularios organizados para claridad visual  
-- Adaptación a móviles mediante media queries CSS -- Falta PROBAR
+- Adaptación a móviles mediante media queries CSS 
 - Emojis intuitivos para acciones como editar, eliminar o archivar
 
 ## Backend
 Para cada una de las acciones que tuviese cada una de las pantallas, se desarrollo un controlador que permitiera realizar la acción, dichos controladores están nombrados según a la pantalla que corresponden, con su acción seguido de backend para dar mayor orden y coherencia al flujo de trabajo en la integración de cada uno de los módulos en el software. Ejemplo 
-- `3-crear_usuario_backend.php` → Registro de nuevos usuarios en la vista 3
+- `3-crear_usuario_backend.php` → Creación de nuevos usuarios en la vista 3
 - `4-archivar_usuario_backend.php` → Archivado de usuarios en la vista 4
 - `4-editar_usuario_backend.php` → Edición de usuarios en la vista 4
 - `4-eliminar_usuario_backend.php` → Eliminación de usuarios en la vista 4
@@ -44,10 +44,10 @@ Adicionalmente, el sistema cuenta con validaciones básicas a la hora de ingresa
 
 También exise una validación por rol, en donde se redireccionan vistas cuando el usuario tiene cierto rol, esto permite proteger algunas funciones que son exclusivas por parte de la administración del software.
 
-Este sistema fue desarrollado por mí, Dahiana Monsalve, como parte del proceso de formación en en análisis y desarrollo de software. Combina creatividad visual con lógica funcional, y sirve como base para futuras integraciones con backend, PHP y bases de datos.
+Este sistema fue desarrollado por mí, Dahiana Monsalve, como parte del proceso de formación en en análisis y desarrollo de software. Combina creatividad visual con lógica funcional, y sirve como base para futuras integraciones con diferentes tecnologías como JavaScript, React.
 
 Si deseas probar cada vista, descarga el proyecto, abre los archivos .php en tu navegador y explora la navegación entre módulos. Supplies iLab está pensado para adaptarse a la realidad de un laboratorio y cada componente fue diseñado con precisión y mucho cariño técnico.
 
-Gracias por tu atención, espero sea de tu agrado mi humilde proyecto.
+Para mayor información del software, puede ingresar al siguiente enlace: https://youtu.be/rFrY20JkCio?si=8mn23kIP2H9TTYki donde explico las tecnologías usadas, el desarrollo backend, frontend, las falencias encontradas y futuras mejoras del software. 
 
-Para mayor información del software, puedo ingresar al siguiente enlace: https://youtu.be/rFrY20JkCio?si=8mn23kIP2H9TTYki
+Gracias por tu atención, espero sea de tu agrado mi proyecto.
