@@ -48,6 +48,6 @@ Este sistema fue desarrollado por mí, Dahiana Monsalve, como parte del proceso 
 
 Si deseas probar cada vista, descarga el proyecto, abre los archivos .php en tu navegador y explora la navegación entre módulos. Supplies iLab está pensado para adaptarse a la realidad de un laboratorio y cada componente fue diseñado con precisión y mucho cariño técnico.
 
-Para mayor información del software, puede ingresar al siguiente enlace: https://youtu.be/rFrY20JkCio?si=8mn23kIP2H9TTYki donde explico las tecnologías usadas, el desarrollo backend, frontend, las falencias encontradas y futuras mejoras del software. 
+Para mayor información del software, puede ingresar al siguiente enlace: https://youtu.be/rFrY20JkCio?si=HcGZKerm-PMmVaNW donde explico las tecnologías usadas, el desarrollo backend, frontend, las falencias encontradas y futuras mejoras del software. 
 
 Gracias por tu atención, espero sea de tu agrado mi proyecto.
